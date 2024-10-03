@@ -5,10 +5,7 @@ Here is a list of folders and files in this repository. Click on any of them to 
 ## Folders
 
 - [Git](Git/)
+  - [command.md](Git/command.md)
 - [React](React/)
 - [Laravel](Laravel/)
 - [Javascript](Javascript/)
-
-## Files
-
-- [README.md](README.md)
