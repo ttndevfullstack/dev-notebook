@@ -63,3 +63,13 @@ _A list of my commonly used Git commands_
 | `git log --oneline` | View changes (briefly) |
 | `git diff [source branch] [target branch]` | Preview changes before merging |
 | `git diff [pre_branch name]..[cur_branch name]` | Check changed when pull current branch |
+
+### Stash changed and apply changes
+
+| Command | Description |
+| ------- | ----------- |
+| `git stash list` | List all stash |
+| `git stash` | Stash changed with random name |
+| `git stash apply pop` | Apply last stash |
+| `git stash push -m "[stash name]"` | Stash changed with specify name |
+| `git stash apply stash@{[index]}` | Apply specify stash |
