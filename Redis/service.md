@@ -4,9 +4,9 @@
 
 ## \_A list method for redis cache strategy
 
-### Installation
+### Setup
 
-_All functions in Redis cache with RedisService class._
+All functions in Redis cache with RedisService class._
 
 ```sh
 const redis = require('redis');
