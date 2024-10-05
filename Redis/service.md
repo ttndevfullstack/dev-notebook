@@ -2,7 +2,7 @@
 
 ---
 
-## \A list method for redis cache strategy
+## A list method for redis cache strategy
 
 ### Setup
 
