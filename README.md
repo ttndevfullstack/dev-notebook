@@ -14,3 +14,6 @@ Here is a list of folders and files in this repository. Click on any of them to 
 - [React](React/)
 - [Laravel](Laravel/)
 - [Javascript](Javascript/)
+- [Service](Service/)
+  - [payment_strategy_pattern.md](Service/payment_strategy_pattern.md)
+  - [subscription_specification_pattern.md](Service/subscription_specification_pattern.md)
