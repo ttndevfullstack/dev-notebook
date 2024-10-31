@@ -17,3 +17,7 @@ Here is a list of folders and files in this repository. Click on any of them to 
 - [Service](Service/)
   - [payment_strategy_pattern.md](Service/payment_strategy_pattern.md)
   - [subscription_specification_pattern.md](Service/subscription_specification_pattern.md)
+- [BrowserCache](BrowserCache/)
+  - [local_storage.md](BrowserCache/local_storage.md)
+- [Linux](Linux/)
+  - [local_storage.md](Linux/command.md)
