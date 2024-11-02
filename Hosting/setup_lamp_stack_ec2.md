@@ -26,7 +26,7 @@ sudo apt install apache2 -y
 sudo systemctl enable apache2
 sudo systemctl start apache2
 
-sudo apt install -y php8.1 libapache2-mod-php8.1 php8.1-cli php8.1-common php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php8.1-bcmath php8.1-mysql
+sudo apt install -y php8.1 libapache2-mod-php8.1 php8.1-cli php8.1-common php8.1-mbstring php8.1-xml php8.1-curl php8.1-zip php8.1-bcmath php8.1-mysql zip unzip php8.1-zip
 sudo systemctl restart apache2
 
 sudo apt install mysql-server -y
