@@ -27,3 +27,5 @@ Here is a list of folders and files in this repository. Click on any of them to 
 - [Linux](Linux/)
   - [command.md](Linux/command.md)
 - [Laravel](Laravel/)
+- [Errors](Errors/)
+  - [errors.md](Linux/errors.md)
