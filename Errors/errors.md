@@ -1,10 +1,10 @@
 # 🚀 Error notebooks
 
-**List errors in software development and solutions to fix**
+**-- List errors in software development and solutions to fix**
 
-## The csv file failed to upload.
-### Reason: File is uploaded too large
-### Solution: Update php.ini file to accept large files
+### The csv file failed to upload.
++ Reason: File is uploaded too large
++ Solution: Update php.ini file to accept large files
 
 ```bash
 upload_max_filesize = 100M
