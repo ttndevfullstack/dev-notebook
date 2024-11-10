@@ -1,10 +1,6 @@
-# Linux Commands
+# 🚀 Linux Commands
 
----
-
-_A list of my commonly used Linux commands_
-
----
+**🌐 A list of my commonly used Linux commands 🌐**
 
 ### Disk & Memory
 
@@ -18,3 +14,14 @@ _A list of my commonly used Linux commands_
 | `sudo apt-get autoremove -y`                     | Remove unused packages                   |
 | `sudo rm -rf /tmp/*`                             | Remove temporary files                   |
 | `rm -rf ~/.cache/*`                              | Remove all cache files                   |
+
+### CPU
+
+| `cat /proc/cpuinfo` | Check CPU information |
+
+### File
+
+| `tail -f /var/log/nginx/access.log` | Monitor file content |
+
+### Nginx Server 
+| `sudo nginx -v` | Check nginx version |
