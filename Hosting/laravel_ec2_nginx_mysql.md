@@ -17,6 +17,7 @@
 
 - Ensure the server meets Laravel's requirements ([Laravel Server Requirements](https://laravel.com/docs/deployment#server-requirements)).
 - Check PHP version and extensions:
+- Ensure installed all PHP extensions requirements by Laravel ([Laravel Deployment Requirement](https://laravel.com/docs/11.x/deployment#main-content)).
 
   ```bash
   # Check PHP version
@@ -55,7 +56,7 @@ sudo apt update
   sudo mysql_secure_installation
   ```
 
-- Create a new DB and project user:
+- Create a new DB and user:
   ```bash
   sudo mysql -u root -p
   CREATE DATABASE <db_name>;
@@ -72,7 +73,7 @@ sudo apt update
 - Upgrade PHP if needed:
 
 ```bash
-sudo apt install php8.2 php8.2-xml php8.2-dom php8.2-mysql zip unzip
+sudo apt install php8.2 php8.2-fpm php8.2-xml php8.2-dom php8.2-mysql zip unzip
 ```
 
 - Enable all services:
@@ -138,7 +139,25 @@ php artisan key:generate
 Modify the environment variable:
 
 ```bash
-APP_DEBUG = false
+APP_NAME=LaravelApp
+APP_ENV=production
+APP_KEY=base64:L/SEAZCKhTNV49LqtPXf7WKvMUQrMVSfRfbKYrveOSE=
+APP_DEBUG=false
+APP_TIMEZONE=UTC
+APP_URL=http://13.229.99.244
+
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=laravel_crud
+DB_USERNAME=crud_user
+DB_PASSWORD=crud_user
+```
+
+Run all command to init application:
+```bash
+php artisan migrate
+php artisan db:seed
 ```
 
 ---
