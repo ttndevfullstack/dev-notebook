@@ -6,6 +6,7 @@
 
 | Command                                          | Description                              |
 | ------------------------------------------------ | ---------------------------------------- |
+| `du -sh * \| sort -h`                            | Check size at current pwd                |
 | `sudo du -sh /\* 2>/dev/null \| sort -rh`        | Check size disk                          |
 | `sudo du -sh ~/.cache 2>/dev/null`               | Check size home directory                |
 | `sudo du -sh /var/\* 2>/dev/null \| sort -h`     | Check the size of subdirectories in /var |
@@ -23,5 +24,6 @@
 
 | `tail -f /var/log/nginx/access.log` | Monitor file content |
 
-### Nginx Server 
+### Nginx Server
+
 | `sudo nginx -v` | Check nginx version |

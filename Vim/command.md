@@ -27,6 +27,15 @@
 | `:.,$d`  | Delete range from current to end |
 | `:%d`    | Delete all                       |
 
+### Comment lines
+
+| Command           | Description                       |
+| ----------------- | --------------------------------- |
+| `:s/^/# /`        | Comment current line              |
+| `:5,10s/^/# /`    | Comment range from 5 through 10   |
+| `:s/^#\s\?//`     | Uncomment current line            |
+| `:5,10s/^#\s\?//` | Uncomment range from 5 through 10 |
+
 ### Moving Lines
 
 | Command     | Description                                   |
