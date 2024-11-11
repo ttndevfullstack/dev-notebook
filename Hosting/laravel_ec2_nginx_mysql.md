@@ -54,14 +54,15 @@ sudo apt update
   ```bash
   sudo mysql_secure_installation
   ```
-- Enable all services:
 
+- Create a new DB and project user:
   ```bash
-  sudo systemctl start nginx
-  sudo systemctl enable nginx
-
-  sudo systemctl start mysql
-  sudo systemctl enable mysql
+  sudo mysql -u root -p
+  CREATE DATABASE <db_name>;
+  CREATE USER '<projectuser>'@'localhost' IDENTIFIED BY '<password>';
+  GRANT ALL PRIVILEGES ON <db_name>.* TO <projectuser>@'localhost';
+  FLUSH PRIVILEGES;
+  EXIT;
   ```
 
 ---
