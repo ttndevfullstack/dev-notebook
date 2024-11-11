@@ -28,14 +28,50 @@
 
 ---
 
+## Set up Ubuntu
+
+To ensure you can install PHP 8.2 on Ubuntu, add the Ondřej Surý PPA, which hosts the latest PHP packages:
+
+```bash
+sudo apt update && sudo apt upgrade -y
+sudo apt install software-properties-common -y
+sudo add-apt-repository ppa:ondrej/php -y
+sudo apt update
+```
+
+---
+
+## Install Nginx and MySQL server
+
+- Install nginx server and MySQL server:
+
+  ```bash
+  sudo apt install nginx -y
+  sudo apt install mysql-server -y
+  ```
+- Secure your MySQL installation by running:
+  ```bash
+  sudo mysql_secure_installation
+  ```
+- Enable all services:
+  ```bash
+  sudo systemctl start nginx
+  sudo systemctl enable nginx
+
+  sudo systemctl start mysql
+  sudo systemctl enable mysql
+  ```
+
+---
+
 ## Install Required PHP Extensions
 
 Upgrade PHP if needed:
 
 ```bash
-sudo add-apt-repository ppa:ondrej/php
-sudo apt update
 sudo apt install php8.2 php8.2-xml php8.2-dom php8.2-mysql zip unzip
+sudo systemctl start php8.2-fpm
+sudo systemctl enable php8.2-fpm
 ```
 
 ---
@@ -61,7 +97,7 @@ composer
    ```
 2. Clone your repository:
    ```bash
-   git clone git@github.com:susanBuck/demo.git
+   git clone git@github.com:user/demo.git
    cd demo
    ```
 
@@ -90,6 +126,10 @@ Set up the Laravel environment:
 cp .env.example .env
 php artisan key:generate
 ```
+Modify the environment variable:
+```bash
+APP_DEBUG = false
+```
 
 ---
 
@@ -114,22 +154,38 @@ sudo chown -R www-data bootstrap/cache
 
    ```nginx
    server {
-       listen 80;
-       server_name demo.com;
-       root /var/www/demo/public;
-
-       add_header X-Frame-Options "SAMEORIGIN";
-       add_header X-Content-Type-Options "nosniff";
-
-       location / {
-           try_files $uri $uri/ /index.php?$query_string;
-       }
-
-       location ~ \.php$ {
-           fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-           include fastcgi_params;
-       }
-   }
+      listen 80;
+      listen [::]:80;
+      server_name example.com;
+      root /srv/example.com/public;
+  
+      add_header X-Frame-Options "SAMEORIGIN";
+      add_header X-Content-Type-Options "nosniff";
+  
+      index index.php;
+  
+      charset utf-8;
+  
+      location / {
+          try_files $uri $uri/ /index.php?$query_string;
+      }
+  
+      location = /favicon.ico { access_log off; log_not_found off; }
+      location = /robots.txt  { access_log off; log_not_found off; }
+  
+      error_page 404 /index.php;
+  
+      location ~ \.php$ {
+          fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+          fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+          include fastcgi_params;
+          fastcgi_hide_header X-Powered-By;
+      }
+  
+      location ~ /\.(?!well-known).* {
+          deny all;
+      }
+    }
    ```
 
 2. Enable the site and test Nginx configuration:
