@@ -42,16 +42,24 @@ sudo apt update
 
 ---
 
-## Install Nginx and MySQL server
+## Install (Nginx or Apache) and MySQL server
 
-- Install nginx server and MySQL server:
-
+- Install Nginx server:
   ```bash
   sudo apt install nginx -y
+  ```
+- Install Apache server:
+  ```bash
+  sudo apt install apache2 -y
+  ```
+- Install MySQL server:
+
+  ```bash
   sudo apt install mysql-server -y
   ```
 
 - Secure your MySQL installation by running:
+
   ```bash
   sudo mysql_secure_installation
   ```
@@ -64,6 +72,19 @@ sudo apt update
   GRANT ALL PRIVILEGES ON <db_name>.* TO <projectuser>@'localhost';
   FLUSH PRIVILEGES;
   EXIT;
+  ```
+
+---
+
+## Configure the Firewall
+
+- To allow Apache through the firewall, run:
+  ```bash
+  sudo ufw allow 'Apache Full'
+  ```
+- Verify UFW’s status with:
+  ```bash
+  sudo ufw status
   ```
 
 ---
@@ -155,6 +176,7 @@ DB_PASSWORD=crud_user
 ```
 
 Run all command to init application:
+
 ```bash
 php artisan migrate
 php artisan db:seed
@@ -167,8 +189,11 @@ php artisan db:seed
 Ensure `storage` and `bootstrap/cache` are writable:
 
 ```bash
-# Get web server user
+# Get nginx user
 ps aux | grep "nginx: worker process" | awk '{print $1}' | grep -v root
+
+# Get apache user
+ps aux | grep "apache" | awk '{print $1}' | grep -v root | head -n 1
 
 # Set permissions for necessary directories
 sudo chown -R www-data storage
@@ -177,44 +202,46 @@ sudo chown -R www-data bootstrap/cache
 
 ---
 
-## Configure Nginx
+## Configure Server
+
+### Nginx server
 
 1. Create an Nginx configuration file in `/etc/nginx/sites-available/demo`:
 
    ```nginx
    server {
-      listen 80;
-      listen [::]:80;
-      server_name example.com;
-      root /srv/example.com/public;
+       listen 80;
+       listen [::]:80;
+       server_name example.com;
+       root /srv/example.com/public;
 
-      add_header X-Frame-Options "SAMEORIGIN";
-      add_header X-Content-Type-Options "nosniff";
+       add_header X-Frame-Options "SAMEORIGIN";
+       add_header X-Content-Type-Options "nosniff";
 
-      index index.php;
+       index index.php;
 
-      charset utf-8;
+       charset utf-8;
 
-      location / {
-          try_files $uri $uri/ /index.php?$query_string;
-      }
+       location / {
+           try_files $uri $uri/ /index.php?$query_string;
+       }
 
-      location = /favicon.ico { access_log off; log_not_found off; }
-      location = /robots.txt  { access_log off; log_not_found off; }
+       location = /favicon.ico { access_log off; log_not_found off; }
+       location = /robots.txt  { access_log off; log_not_found off; }
 
-      error_page 404 /index.php;
+       error_page 404 /index.php;
 
-      location ~ \.php$ {
-          fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
-          fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
-          include fastcgi_params;
-          fastcgi_hide_header X-Powered-By;
-      }
+       location ~ \.php$ {
+           fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
+           fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+           include fastcgi_params;
+           fastcgi_hide_header X-Powered-By;
+       }
 
-      location ~ /\.(?!well-known).* {
-          deny all;
-      }
-    }
+       location ~ /\.(?!well-known).* {
+           deny all;
+       }
+     }
    ```
 
 2. Enable the site and test Nginx configuration:
@@ -224,6 +251,64 @@ sudo chown -R www-data bootstrap/cache
    sudo nginx -t
    sudo systemctl restart nginx
    ```
+
+---
+
+### Configure Apache
+
+1. Create an Nginx configuration file in `/etc/nginx/sites-available/demo`:
+
+   ```apache
+   <VirtualHost *:80>
+    ServerAdmin webmaster@yourdomain.com
+    ServerName yourdomain.com
+    ServerAlias www.yourdomain.com
+
+    DocumentRoot /var/www/yourdomain.com/html
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+   </VirtualHost>
+   ```
+
+2. Enable the site and test Nginx configuration:
+
+   ```bash
+   sudo a2ensite yourdomain.com.conf
+   apache2ctl -t
+   systemctl restart apache2
+   ```
+
+3. Enable Apache Modules (Optional):
+
+- mod_rewrite for URL rewriting, often used in SEO and web frameworks.
+- mod_ssl for SSL/TLS support.
+
+  ```bash
+  sudo a2enmod rewrite
+  sudo a2enmod ssl
+  ```
+
+4. Security Enhancement (Optional):
+
+- Open Apache’s configuration file:
+
+```bash
+   sudo nano /etc/apache2/conf-available/security.conf
+```
+
+- Set these two parameters:
+
+  ```bash
+  ServerTokens Prod
+  ServerSignature Off
+  ```
+
+5. Restart Apache server
+
+```bash
+  sudo systemctl restart apache2
+
+```
 
 ---
 
