@@ -17,6 +17,8 @@ Here is a list of folders and files in this repository. Click on any of them to 
 - [Hosting](Hosting/)
   - [laravel_mysql_ec2_nginx_or_apache.md](Hosting/laravel_mysql_ec2_nginx_or_apache.md)
   - [setup_lamp_stack_ec2.md](Hosting/setup_lamp_stack_ec2.md)
+- [Laravel](Laravel/)
+  - [file_manager.md](Laravel/file_manager.md)
 - [Linux](Linux/)
   - [command.md](Linux/command.md)
 - [NodeJS](NodeJS/)
