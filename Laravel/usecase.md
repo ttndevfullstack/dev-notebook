@@ -2,7 +2,7 @@
 
 **🌐 A list of use cases to use in Laravel Application 🌐**
 
-### Improving Laravel Sanctum Personal Access Token Performance
+### 🔴 Improving Laravel Sanctum Personal Access Token Performance
 
 -- Sanctum was performing a database write to update the last_used_at and update_at column on the personal_access_tokens table per request
 -- After implementing this, I saw an immediate improvement from eliminating those costly database writes. This would be even more relevant if you had a more complex database setup, such as using replication and separating reads/writes.
@@ -56,4 +56,38 @@ public function boot()
             PersonalAccessToken::class
         );
     }
+```
+
+### 🔴 Force Render API Exceptions As JSON Data
+
+1. From laravel 5 to 10:
+```php
+class ForceJsonResponse
+{
+    public function handle(Request $request, Closure $next)
+    {
+        $request->headers->set('Accept', 'application/json');
+ 
+        return $next($request);
+    }
+}
+```
+
+2. From Laravel 11:
+```php
+// bootstrap/app.php
+ 
+return Application::configure(basePath: dirname(__DIR__))
+ 
+    //...
+ 
+    ->withExceptions(function (Exceptions $exceptions) {
+        $exceptions->shouldRenderJsonWhen(function (Request $request, Throwable $e) {
+            if ($request->is('api/*')) {
+                return true;
+            }
+ 
+            return $request->expectsJson();
+        });
+    })->create();
 ```
