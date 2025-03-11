@@ -42,4 +42,33 @@ sudo apt install php-dom
 sudo apt install --reistall pdo_sqlite
 ```
 
+### ❌  Spatie\Backup\Exceptions\InvalidConfig
+
+   is not a valid email address.
+
+  at vendor/spatie/laravel-backup/src/Exceptions/InvalidConfig.php:11
+      7▕ class InvalidConfig extends Exception
+      8▕ {
+      9▕     public static function invalidEmail(string $email): static
+     10▕     {
+  ➜  11▕         return new static("{$email} is not a valid email address.");
+     12▕     }
+     13▕
+     14▕     public static function missingSender(): static
+     15▕     {
+
+      +23 vendor frames
+
+  24  artisan:35
+      Illuminate\Foundation\Console\Kernel::handle()
+      
++ 🔴 Reason: Config backup file can't load notification mail from env file
++ 🛠️ Solution: Set email to this config file
+
+```bash
+'mail' => [
+            'to' => 'nghiakydiem@gmail.com',
+]
+```
+
 
