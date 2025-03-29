@@ -91,6 +91,24 @@ sudo apt update
 
 ## Install Required PHP Extensions
 
+- Install PHPEnv if needed:
+```bash
+# Install Required Dependencies
+sudo apt update && sudo apt upgrade -y
+sudo apt install -y git curl build-essential libxml2-dev libssl-dev \
+    libbz2-dev libcurl4-openssl-dev libjpeg-dev libpng-dev \
+    libmcrypt-dev libreadline-dev libtidy-dev libxslt1-dev \
+    libzip-dev zlib1g-dev autoconf bison re2c pkg-config
+
+# Clone phpenv Repository
+git clone https://github.com/phpenv/phpenv.git ~/.phpenv
+
+echo 'export PHPENV_ROOT="$HOME/.phpenv"' >> ~/.zshrc
+echo 'export PATH="$PHPENV_ROOT/bin:$PATH"' >> ~/.zshrc
+echo 'eval "$(phpenv init -)"' >> ~/.zshrc
+source ~/.zshrc
+```
+
 - Upgrade PHP if needed:
 
 ```bash

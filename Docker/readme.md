@@ -2,7 +2,7 @@
 
 **🌐 Docker notebook with good strategies 🌐**
 
-## Reducing the size of docker image
+## Reducing the size of docker images
 1. Using multistate building
 --- Remove all unnecessary data and get final image size for execution
 --- This is traditional building and multistate building

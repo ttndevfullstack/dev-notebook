@@ -1,4 +1,4 @@
-# 🚀 Getting Started
+# 🚀 Getting Started Now
 
 **Optimize Database Note**
 
