@@ -44,5 +44,3 @@ Here is a list of folders and files in this repository. Click on any of them to 
 - [Vim](Vim/)
   - [Vim](Vim/)
     - [command.md](Vim/command.md)
-
-test 2
