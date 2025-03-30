@@ -13,11 +13,13 @@ _A list of my commonly used Git commands_
 | `git maintenance start` | Enable automatic maintenance |
 | `git maintenance run` | Run cleanup tasks immediately |
 | `git maintenance stop` | Disable automatic maintenance |
+| `git fetch --all && git reset --hard origin/$(git rev-parse --abbrev-ref HEAD)` | Reset current branch from remote branch |
 
 ### Branching & Merging
 
 | Command | Description |
 | ------- | ----------- |
+| `git commit --amend -m "<new_message>"` | Update message of latest commit |
 | `git push origin --delete [branch name]` | Delete a remote branch |
 | `git checkout -b [branch name] origin/[branch name]` | Clone a remote branch and switch to it |
 | `git merge [source branch] [target branch]` | Merge a branch into a target branch |
