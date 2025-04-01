@@ -71,4 +71,13 @@ sudo apt install --reistall pdo_sqlite
 ]
 ```
 
+### ❌  System has not been booted with systemd as init system (PID 1). Can't operate. Failed to connect to bus: Host is down
+      
++ 🔴 Reason: WSL version not support current Ubuntu. Installed but not set version for Ubuntu yet.
++ 🛠️ Solution: Set servion for Ubuntu to 2
+
+```bash
+wsl --set-version Ubuntu 2
+```
+
 
