@@ -105,13 +105,17 @@
 - Install Composer and Laravel manager
 
   ```bash
-  # Install Composer
-  cd /usr/bin
-  curl -sS https://getcomposer.org/installer | sudo php
-  sudo mv composer.phar composer
+  # Install PHP (if not already installed)
+  sudo apt update && sudo apt install -y php-cli php-zip unzip curl
   
-  # Check
-  composer
+  # Download and install Composer
+  curl -sS https://getcomposer.org/installer | php
+  
+  # Move Composer to global PATH
+  sudo mv composer.phar /usr/local/bin/composer
+  
+  # Verify installation
+  composer --version
 
   # Install Laravel Manager
   composer global require laravel/installer
