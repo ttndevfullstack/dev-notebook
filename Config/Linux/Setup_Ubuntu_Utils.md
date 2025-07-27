@@ -9,7 +9,7 @@ This guide helps you set up a powerful developer environment inside Ubuntu 24.04
 Run the following command to install all tools at once:
 
 ```bash
-sudo apt update && sudo apt install git curl wget fzf bat ripgrep eza lsd tmux -y
+sudo apt update && sudo apt install git curl wget fzf bat ripgrep eza lsd tmux btop -y
 ```
 
 ---
