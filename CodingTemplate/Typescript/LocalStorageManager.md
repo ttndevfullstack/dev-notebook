@@ -2,7 +2,7 @@
 
 ** Class Local Storage Service **
 
-## Create localStorageService.ts file
+## Create LSManager.ts file
 
 ```ts
 export type StoredItem<T> = {
@@ -12,7 +12,7 @@ export type StoredItem<T> = {
   data: T;
 };
 
-export default class LocalStorageService {
+export default class LSManager {
   private static PREFIX = 'misa_';
 
   private static getStorageKey(key: string): string {

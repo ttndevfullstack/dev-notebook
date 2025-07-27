@@ -11,7 +11,7 @@
 | `CREATE USER '<name>'@'localhost' IDENTIFIED BY '<pass>';` | Create a new user                            |
 | `GRANT ALL PRIVILEGES ON <db.*>.* TO <user>@localhost`     | Grant full privileges on specify DB          |
 | `GRANT SELECT ON <db.table> TO <user>@localhost`           | Grant only select privileges on Table in DB  |
-| `REVOKE ALL PRIVILEGES ON <db.*> FROM <user>@localhost`    | Revoke full privileges on specify DB         |
+| `REVOKE ALL PRIVILEGES   ON <db.*> FROM <user>@localhost`    | Revoke full privileges on specify DB         |
 | `REVOKE SELECT ON <db.table> FROM <user>@localhost`        | Revoke only select privileges on Table in DB |
 | `FLUSH PRIVILEGES;`                                        | Apply privileges                             |
 | `SHOW GRANTS FOR <user>@localhost`                         | Show grant of a user                         |
